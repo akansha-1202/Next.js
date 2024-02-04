@@ -20,3 +20,5 @@ const Docs = () => {
 };
 
 export default Docs;
+
+//If we are making file like this "[...params].js" then file will not content for "localhost:3000/doc" path and give 404 error page. It will only show content for routes after "localhost:3000/doc". Bt if you give file name like this "[[...params]].js" then it will show content for "localhost:3000/doc". So, this is the benefit for using this.

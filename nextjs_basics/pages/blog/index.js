@@ -1,7 +1,13 @@
 import React from 'react'
+import Link from 'next/link';
 //this folder is for nested routing
 const Blog = () => {
-  return <div>Main Blog : localhost:3000/blog</div>;
+  return (
+    <div>
+      <Link href="/">Home</Link>
+      <h1>Main Blog : localhost:3000/blog</h1>
+    </div>
+  );
 }
 
 export default Blog
