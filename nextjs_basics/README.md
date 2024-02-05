@@ -1,9 +1,9 @@
-#NEXT.JS BASICS
+# NEXT.JS BASICS
 
 It is not possible to build a full feature rich app for production using REACT bcz it is used for building UI. You also have to make decisions on other features of apps like authentication, routing, styling.
 But Next.js is a React framework for building full-stack web applications. It uses a package that React use for building UI. It is loaded with so many features that simplifies the process of building a react app fo production. There is no need to install additional packages. Next.js provides everything.
 
-##FEATURES OF NEXT.JS
+## FEATURES OF NEXT.JS
 
 - File based routing
 - Pre-rendering (Pre-rendered websites can have much better SEO scores. This is because pre-rendered websites generate the final HTML output for a page at build time.)
@@ -12,7 +12,7 @@ But Next.js is a React framework for building full-stack web applications. It us
 - Authentication
 - Dev and Prod build System
 
-##Routing in Next.js
+## Routing in Next.js
 
 - Route with Pages (localhost:3000/blog)
 - Nested routes (localhost:3000/blog/blog1)
@@ -22,7 +22,7 @@ But Next.js is a React framework for building full-stack web applications. It us
 - Navigate from the UI using Link component
 - Programmatically navigating b/w pagaes using useRouter()
 
-###Link
+### Link
 
 In Next.js, the `Link` component is used for client-side navigation between pages in your application. The `replace` attribute in the Link component allows you to replace the current URL in the history stack instead of adding a new entry to the history stack when the link is clicked.
 
@@ -51,6 +51,7 @@ const MyComponent = () => (
     <a>About</a>
   </Link>
 );`
+
 
 `useRouter()`
 
