@@ -133,9 +133,14 @@ Pre-rendering can result in better performance and SEO.
 ### Static Generation
 
 ![Alt text](./public/staticGeneration.png)
+
 ![Alt text](./public/SG_How.png)
+
+`Next.js shows all content in HTML page because of pre-rendering`
 ![Alt text](./public/nextJsHtmlPage.png)
+
 ![Alt text](./public/SG_Data1.png)
+
 ![Alt text](./public/SG_Data2.png)
 
 
