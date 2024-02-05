@@ -43,6 +43,7 @@ In Next.js, both Link and useRouter() are used for navigation, but they serve sl
 - The Link component is a built-in component provided by Next.js for `declarative` client-side navigation. It is used to navigate between pages in your Next.js application.
 - It pre-fetches the linked page in the background, which helps in faster navigation and improves the user experience.
 
+```javascript
 import Link from 'next/link';
 
 const MyComponent = () => (
@@ -51,13 +52,14 @@ const MyComponent = () => (
     <a>About</a>
   </Link>
 );
-
+```
 
 `useRouter()`
 
 - The useRouter() hook is provided by Next.js's next/router module. It gives you access to the router object, allowing you to programmatically navigate between pages, access route parameters, query parameters, etc.
 - Unlike Link, which is a declarative way of navigating, useRouter() is a `imperatively` way of navigating used when navigate based on some logic, such as form submissions, button clicks, or user authentication.
 
+```javascript
 import { useRouter } from 'next/router';
 
 const MyComponent = () => {
@@ -70,5 +72,4 @@ router.push('/about');
 return <button onClick={handleClick}>Go to About</button>;
 };
 
-
-
+```
