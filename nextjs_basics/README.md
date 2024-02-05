@@ -101,17 +101,16 @@ const MyComponent = () => {
 
 Types of pre-rendering:
 
-1.  Static Generation
-
+1. Static Generation
 - without data
 - with data
 - Incremental Static Generation
 - Dynamic parameters when fetching data
 
 2. Serve-side Rendering
-
 - data fetching
 
 Client-side data fetching
+
 Combining pre-rendering with client-side data fetching
 
