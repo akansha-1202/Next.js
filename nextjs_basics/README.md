@@ -21,6 +21,7 @@ But Next.js is a React framework for building full-stack web applications. It us
 - Catch-all routes (localhost:3000/docs/feature1/concept1)[...params].js and useRouter()
 - Navigate from the UI using Link component
 - Programmatically navigating b/w pagaes using useRouter()
+- Custom 404 page with all necessary styling (404.js)
 
 ### Link
 
@@ -77,12 +78,12 @@ const MyComponent = () => {
 `Declarative Programming:`
 
 - Declarative programming focuses on describing what you want to achieve without specifying how to achieve it.
-- Examples of declarative programming include HTML, CSS, SQL, and declarative UI frameworks like React.
+- Examples of declarative programming include `HTML`, `CSS`, `SQL`, and declarative UI frameworks like `React`.
 
 `Imperative Programming:`
 
 - Imperative programming focuses on describing how to achieve a desired outcome step by step.
-- Examples of imperative programming include traditional JavaScript programming, control structures like loops and conditionals, and direct DOM manipulation.
+- Examples of imperative programming include traditional `JavaScript` programming, control structures like loops and conditionals, and direct DOM manipulation.
 
 `Declarative Navigation with Link:`
 
@@ -92,6 +93,25 @@ const MyComponent = () => {
 
 `Imperative Navigation with useRouter():`
 
-- When you use the useRouter() hook in Next.js, you explicitly specify how to navigate by calling methods like push() or replace() on the router object.
+- When you use the useRouter() hook in Next.js, you explicitly specify how to navigate by calling methods like `push()` or `replace()` on the router object.
 - You define the navigation logic imperatively based on conditions, user actions, or events.
 - You have more control over the navigation process, but you're responsible for managing the navigation flow and handling any side effects manually.
+
+## Pre-Rendering & Data Fetching
+
+Types of pre-rendering:
+
+1.  Static Generation
+
+- without data
+- with data
+- Incremental Static Generation
+- Dynamic parameters when fetching data
+
+2. Serve-side Rendering
+
+- data fetching
+
+Client-side data fetching
+Combining pre-rendering with client-side data fetching
+
