@@ -34,7 +34,7 @@ Some common cases where you might use the replace attribute:
 
 - Authentication Flows: In authentication flows, you might redirect users after successful login or logout. Using replace can help maintain cleaner navigation behavior, preventing users from accidentally navigating back to sensitive pages after logging out.
 
-###Difference b/w using Link component and useRouter() Hook:
+### Difference b/w using Link component and useRouter() Hook:
 
 In Next.js, both Link and useRouter() are used for navigation, but they serve slightly different purposes and have different use cases.
 
@@ -43,14 +43,14 @@ In Next.js, both Link and useRouter() are used for navigation, but they serve sl
 - The Link component is a built-in component provided by Next.js for `declarative` client-side navigation. It is used to navigate between pages in your Next.js application.
 - It pre-fetches the linked page in the background, which helps in faster navigation and improves the user experience.
 
-`import Link from 'next/link';
+` import Link from 'next/link';
 
 const MyComponent = () => (
 
   <Link href="/about">
     <a>About</a>
   </Link>
-);`
+); `
 
 
 `useRouter()`
@@ -58,7 +58,7 @@ const MyComponent = () => (
 - The useRouter() hook is provided by Next.js's next/router module. It gives you access to the router object, allowing you to programmatically navigate between pages, access route parameters, query parameters, etc.
 - Unlike Link, which is a declarative way of navigating, useRouter() is a `imperatively` way of navigating used when navigate based on some logic, such as form submissions, button clicks, or user authentication.
 
-`import { useRouter } from 'next/router';
+` import { useRouter } from 'next/router';
 
 const MyComponent = () => {
 const router = useRouter();
@@ -68,8 +68,7 @@ router.push('/about');
 };
 
 return <button onClick={handleClick}>Go to About</button>;
-};
-`
+}; `
 
 
 
