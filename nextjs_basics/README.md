@@ -102,15 +102,32 @@ const MyComponent = () => {
 Types of pre-rendering:
 
 1. Static Generation
+
 - without data
 - with data
 - Incremental Static Generation
 - Dynamic parameters when fetching data
 
 2. Serve-side Rendering
+
 - data fetching
 
 Client-side data fetching
 
 Combining pre-rendering with client-side data fetching
+
+### Pre-rendering
+
+`What ?`
+
+Pre-rendering refers to the process of generating HTML with the necessary data for a page in our application.
+
+`How ?`
+
+Pre-rendering can result in better performance and SEO.
+
+![Alt text](./public/Pre-rendering.png)
+
+![Alt text](./public/why%20pre-render.png)
+
 
