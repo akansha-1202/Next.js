@@ -44,10 +44,9 @@ In Next.js, both Link and useRouter() are used for navigation, but they serve sl
 - It pre-fetches the linked page in the background, which helps in faster navigation and improves the user experience.
 
 ```javascript
-import Link from 'next/link';
+import Link from "next/link";
 
 const MyComponent = () => (
-
   <Link href="/about">
     <a>About</a>
   </Link>
@@ -60,16 +59,39 @@ const MyComponent = () => (
 - Unlike Link, which is a declarative way of navigating, useRouter() is a `imperatively` way of navigating used when navigate based on some logic, such as form submissions, button clicks, or user authentication.
 
 ```javascript
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const MyComponent = () => {
-const router = useRouter();
+  const router = useRouter();
 
-const handleClick = () => {
-router.push('/about');
+  const handleClick = () => {
+    router.push("/about");
+  };
+
+  return <button onClick={handleClick}>Go to About</button>;
 };
-
-return <button onClick={handleClick}>Go to About</button>;
-};
-
 ```
+
+### Difference b/w using Declarative and Imperative Programming:
+
+`Declarative Programming:`
+
+- Declarative programming focuses on describing what you want to achieve without specifying how to achieve it.
+- Examples of declarative programming include HTML, CSS, SQL, and declarative UI frameworks like React.
+
+`Imperative Programming:`
+
+- Imperative programming focuses on describing how to achieve a desired outcome step by step.
+- Examples of imperative programming include traditional JavaScript programming, control structures like loops and conditionals, and direct DOM manipulation.
+
+`Declarative Navigation with Link:`
+
+- When you use the Link component in Next.js, you declare the target destination (where you want to navigate) by specifying the href attribute.
+- The framework (Next.js) takes care of the implementation details, such as handling client-side navigation, prefetching linked pages, and updating the URL in the browser.
+- You focus on declaring the intent (the desired navigation) without worrying about how the navigation is implemented under the hood.
+
+`Imperative Navigation with useRouter():`
+
+- When you use the useRouter() hook in Next.js, you explicitly specify how to navigate by calling methods like push() or replace() on the router object.
+- You define the navigation logic imperatively based on conditions, user actions, or events.
+- You have more control over the navigation process, but you're responsible for managing the navigation flow and handling any side effects manually.
