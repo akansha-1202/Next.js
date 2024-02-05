@@ -122,12 +122,24 @@ Combining pre-rendering with client-side data fetching
 
 Pre-rendering refers to the process of generating HTML with the necessary data for a page in our application.
 
-`How ?`
+`Why ?`
 
 Pre-rendering can result in better performance and SEO.
 
 ![Alt text](./public/Pre-rendering.png)
 
 ![Alt text](./public/why%20pre-render.png)
+
+### Static Generation
+
+![Alt text](./public/staticGeneration.png)
+![Alt text](./public/SG_How.png)
+![Alt text](./public/nextJsHtmlPage.png)
+![Alt text](./public/SG_Data1.png)
+![Alt text](./public/SG_Data2.png)
+
+
+
+
 
 
