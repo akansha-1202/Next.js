@@ -140,15 +140,93 @@ Pre-rendering can result in better performance and SEO.
 
 ![Alt text](./public/nextJsHtmlPage.png)
 
-
 `Static Generation with or without Data`
 
 ![Alt text](./public/SG_Data1.png)
 
 ![Alt text](./public/SG_Data2.png)
 
+### Static Generation with getStaticProps()
+
+- If you export a function called getStaticProps (Static Site Generation) from a page, Next.js will pre-render this page at build time using the props returned by getStaticProps.
+
+`Fetching Data from a CMS(Content Management System) using getStaticProps()`
+
+```javascript
+// pages/blog.js
+// posts will be populated at build time by getStaticProps()
+export default function Blog({ posts }) {
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+// This function gets called at build time on server-side.
+// It won't be called on client-side, so you can even do
+// direct database queries.
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch("https://.../posts");
+  const posts = await res.json();
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+```
+
+- As getStaticProps runs only on the server-side, it will never run on the client-side. It won’t even be included in the JS bundle for the browser, so you can write direct database queries without them being sent to browsers.
+
+This means that instead of fetching an API route from getStaticProps (that itself fetches data from an external source), you can write the server-side code directly in getStaticProps.
+
+This produces an additional call, reducing performance. Instead, the logic for fetching the data from the CMS can be shared by using a lib/ directory.
+
+```javascript
+// lib/load-post.js
+// The following function is shared
+// with getStaticProps and API routes
+// from a `lib/` directory
+export async function loadPosts() {
+  // Call an external API endpoint to get posts
+  const res = await fetch("https://.../posts/");
+  const data = await res.json();
+
+  return data;
+}
+```
+
+```javascript
+// pages/blog.js
+import { loadPosts } from "../lib/load-posts";
+
+// This function runs only on the server side
+export async function getStaticProps() {
+  // Instead of fetching your `/api` route you can call the same
+  // function directly in `getStaticProps`
+  const posts = await loadPosts();
+
+  // Props returned will be passed to the page component
+  return { props: { posts } };
+}
+```
+
+`Where can I use getStaticProps: `
 
 
+getStaticProps can only be exported from a page. You cannot export it from non-page files, _app, _document, or _error.
+
+One of the reasons for this restriction is that React needs to have all the required data before the page is rendered.
+
+Also, you must use export getStaticProps as a standalone function — it will not work if you add getStaticProps as a property of the page component.
 
 
-
+07/02/2024
