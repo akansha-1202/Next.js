@@ -221,12 +221,21 @@ export async function getStaticProps() {
 
 `Where can I use getStaticProps: `
 
-
-getStaticProps can only be exported from a page. You cannot export it from non-page files, _app, _document, or _error.
+getStaticProps can only be exported from a page. You cannot export it from non-page files, \_app, \_document, or \_error.
 
 One of the reasons for this restriction is that React needs to have all the required data before the page is rendered.
 
 Also, you must use export getStaticProps as a standalone function — it will not work if you add getStaticProps as a property of the page component.
 
+![Alt text](./public/getStaticProps1.png)
 
-07/02/2024
+![Alt text](./public/getStaticProps2.png)
+
+
+`Running Static Generation Builds`
+
+
+![Alt text](./public/SGwithBuild.png)
+
+![Alt text](./public/SGwithBuild2.png)
+
