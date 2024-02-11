@@ -7,9 +7,16 @@ export default function Home() {
   return (
     <main>
       Home
-      <div className="w-[120px] flex gap-x-4 bg-gray-200">
-        <Link href="/blog">Blog</Link>
-        <Link href="/product">Products</Link>
+      <div className="w-[15%] flex gap-x-4 bg-gray-200">
+        <Link href="/blog" className="hover:text-blue-500">
+          Blog
+        </Link>
+        <Link href="/product" className="hover:text-blue-500">
+          Products
+        </Link>
+        <Link href="/posts" className="hover:text-blue-500">
+          Posts
+        </Link>
       </div>
     </main>
   );

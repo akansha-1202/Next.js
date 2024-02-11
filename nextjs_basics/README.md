@@ -27,6 +27,8 @@ But Next.js is a React framework for building full-stack web applications. It us
 
 In Next.js, the `Link` component is used for client-side navigation between pages in your application. The `replace` attribute in the Link component allows you to replace the current URL in the history stack instead of adding a new entry to the history stack when the link is clicked.
 
+Props of Link : href, replace, scroll, prefetch, passHref
+
 The `replace` attribute is useful in situations where you want to perform navigation but don't want the user to be able to navigate back to the previous page using the browser's back button. This can be helpful for certain workflows or scenarios where you don't want the user to revisit a particular page after navigating away from it.
 
 Some common cases where you might use the replace attribute:
@@ -231,11 +233,144 @@ Also, you must use export getStaticProps as a standalone function — it will no
 
 ![Alt text](./public/getStaticProps2.png)
 
-
 `Running Static Generation Builds`
-
 
 ![Alt text](./public/SGwithBuild.png)
 
 ![Alt text](./public/SGwithBuild2.png)
+
+### Static Generation with getStaticProps
+
+- If a page has Dynamic Routes and uses getStaticProps, it needs to define a list of paths to be statically generated.
+
+- When you export a function called getStaticPaths (Static Site Generation) from a page that uses dynamic routes, Next.js will statically pre-render all the paths specified by getStaticPaths.
+
+- getStaticPaths function shhould return an object with following required properties :
+
+  1. `paths` : The paths key determines which paths will be pre-rendered.
+  2. `fallback`: It can be "true", "false" or "blocking"
+
+
+
+![Alt text](./public/fallback.png)
+
+![Alt text](./public/fallback_false.png)
+
+
+```javascript
+export const getStaticPaths = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const posts = await res.json();
+
+  const paths = posts.map((post) => ({ params: { postId: `${post.id}` } }));
+  //here we always have to make postId stringified, so we are writing inside benticks
+  return {
+    paths,
+    fallback: fasle,
+  };
+};
+```
+
+
+![Alt text](./public/fallback_true.png)
+
+```javascript
+import { useRouter } from "next/router";
+import React from "react";
+
+function PostDetails({ post }) {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <h1>Loading.....</h1>;
+  }
+  return (
+    <div>
+      <h1>Post Details : </h1>
+
+      <div>
+        <h3>{post.title}</h3>
+        <p>{post.body}</p>
+      </div>
+    </div>
+  );
+}
+
+export default PostDetails;
+
+export const getStaticPaths = async () => {
+  return {
+    paths: [
+      {
+        params: { postId: "1" },
+      },
+      {
+        params: { postId: "2" },
+      },
+      {
+        params: { postId: "3" },
+      },
+    ],
+    fallback: true,
+  };
+};
+
+export const getStaticProps = async (context) => {
+  const { params } = context;
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${params.postId}`
+  );
+  const data = await res.json();
+
+  if (!data.id) {   //for page whose id is not present
+    return {
+      notFound : true,
+    };
+  }
+  // console.log(`Generating page for /posts/${params.postId}`);
+  return {
+    props: {
+      post: data,
+    },
+  };
+};
+```
+
+![Alt text](./public/when_fallback_true.png)
+
+
+- `Where can I use getStaticPaths` 
+
+1. getStaticPaths must be used with getStaticProps
+2. You cannot use getStaticPaths with getServerSideProps
+3. You can export getStaticPaths from a Dynamic Route that also uses getStaticProps
+4. You cannot export getStaticPaths from non-page file (e.g. your components folder)
+5. You must export getStaticPaths as a standalone function, and not a property of    the page component
+
+
+- `When does getStaticPaths run`
+
+1. getStaticPaths will only run during `build` in production, it will not be called during runtime.
+2. In development (next dev), getStaticPaths will be called on every request.
+
+
+- `How does getStaticProps run with regards to getStaticPaths`
+
+1. getStaticProps runs during next build for any paths returned during build
+2. getStaticProps runs in the background when using fallback: true
+3. getStaticProps is called before initial render when using fallback: blocking
+
+
+- `Where can I use getStaticPaths`
+
+1. getStaticPaths must be used with getStaticProps
+2. You cannot use getStaticPaths with getServerSideProps
+3. You can export getStaticPaths from a Dynamic Route that also uses getStaticProps
+4. You cannot export getStaticPaths from non-page file (e.g. your components folder)
+5. You must export getStaticPaths as a standalone function, and not a property of the page component
+
+
+- `Generating paths on-demand`
+
+1. getStaticPaths allows you to control which pages are generated during the build instead of on-demand with fallback. Generating more pages during a build will cause slower builds.
+
 
