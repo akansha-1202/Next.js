@@ -2,10 +2,15 @@ import { useRouter } from "next/router";
 import React from "react";
 
 function PostDetails({ post }) {
+  //add this, if "fallback : true"
+  //-------------
   const router = useRouter();
+
   if (router.isFallback) {
     return <h1>Loading.....</h1>;
   }
+  //-------------
+
   return (
     <div>
       <h1>Post Details : </h1>
@@ -39,7 +44,9 @@ export const getStaticPaths = async () => {
       },
     ],
     // paths,
+    // fallback:false,
     fallback: true,
+    // fallback: "blocking",
   };
 };
 
@@ -51,11 +58,15 @@ export const getStaticProps = async (context) => {
   );
   const data = await res.json();
 
+  //add this, if "fallback : true"
+  //-------------
   if (!data.id) {
     return {
-      notFound : true,
+      notFound: true,
     };
   }
+  //-------------
+
   // console.log(`Generating page for /posts/${params.postId}`);
   return {
     props: {

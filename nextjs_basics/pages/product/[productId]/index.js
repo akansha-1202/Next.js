@@ -1,12 +1,53 @@
 import { useRouter } from "next/router";
 import React from "react";
 
-const ProductDetails = () => {
+const ProductDetails = ({product}) => {
   const router = useRouter(); //giving router object
   const productDetail = router.query.productId; //it containing property "query"
   // name that is given in file "productId" should be same
-  return <div>Product Detail is {productDetail}</div>;
+
+  if(router.isFallback){
+    return <div>Loading</div>
+  }
+  return (
+    <div>
+      <div>Product Detail is {productDetail}</div>
+      <div>
+        ID : {product.id} <br />
+        TITLE : {product.title}
+        <br />
+        PRICE : {product.price}
+        <br />
+        DESCRIPTION : {product.description}
+      </div>
+    </div>
+  );
 };
 
 //productId can be any string or number in form of string
 export default ProductDetails;
+
+
+export const getStaticPaths = async () => {
+  return {
+    paths: [{
+      params : {
+        productId : "1"
+      }
+    }],
+    fallback : true
+  }
+}
+
+
+export const getStaticProps = async (context) => {
+  const { params } = context;
+  const res = await fetch(`http://localhost:4000/products/${params.productId}`);
+  const data = await res.json();
+
+  return {
+    props: {
+      product: data,
+    },
+  };
+};

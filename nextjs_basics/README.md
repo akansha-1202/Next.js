@@ -250,12 +250,9 @@ Also, you must use export getStaticProps as a standalone function — it will no
   1. `paths` : The paths key determines which paths will be pre-rendered.
   2. `fallback`: It can be "true", "false" or "blocking"
 
-
-
 ![Alt text](./public/fallback.png)
 
 ![Alt text](./public/fallback_false.png)
-
 
 ```javascript
 export const getStaticPaths = async () => {
@@ -270,7 +267,6 @@ export const getStaticPaths = async () => {
   };
 };
 ```
-
 
 ![Alt text](./public/fallback_true.png)
 
@@ -321,9 +317,10 @@ export const getStaticProps = async (context) => {
   );
   const data = await res.json();
 
-  if (!data.id) {   //for page whose id is not present
+  if (!data.id) {
+    //for page whose id is not present
     return {
-      notFound : true,
+      notFound: true,
     };
   }
   // console.log(`Generating page for /posts/${params.postId}`);
@@ -337,28 +334,24 @@ export const getStaticProps = async (context) => {
 
 ![Alt text](./public/when_fallback_true.png)
 
-
-- `Where can I use getStaticPaths` 
+- `Where can I use getStaticPaths`
 
 1. getStaticPaths must be used with getStaticProps
 2. You cannot use getStaticPaths with getServerSideProps
 3. You can export getStaticPaths from a Dynamic Route that also uses getStaticProps
 4. You cannot export getStaticPaths from non-page file (e.g. your components folder)
-5. You must export getStaticPaths as a standalone function, and not a property of    the page component
-
+5. You must export getStaticPaths as a standalone function, and not a property of the page component
 
 - `When does getStaticPaths run`
 
 1. getStaticPaths will only run during `build` in production, it will not be called during runtime.
 2. In development (next dev), getStaticPaths will be called on every request.
 
-
 - `How does getStaticProps run with regards to getStaticPaths`
 
 1. getStaticProps runs during next build for any paths returned during build
 2. getStaticProps runs in the background when using fallback: true
 3. getStaticProps is called before initial render when using fallback: blocking
-
 
 - `Where can I use getStaticPaths`
 
@@ -368,9 +361,20 @@ export const getStaticProps = async (context) => {
 4. You cannot export getStaticPaths from non-page file (e.g. your components folder)
 5. You must export getStaticPaths as a standalone function, and not a property of the page component
 
-
 - `Generating paths on-demand`
 
 1. getStaticPaths allows you to control which pages are generated during the build instead of on-demand with fallback. Generating more pages during a build will cause slower builds.
 
+### Incremental Static Generation
 
+`Static Generation Issues`
+
+![Alt text](./public/SG_Issues.png)
+
+![Alt text](./public/Build_Issues.png)
+
+![Alt text](./public/Issues_StaleData.png)
+
+![Alt text](./public/gSP_issues.png)
+
+![Alt text](./public/ISR.png)
