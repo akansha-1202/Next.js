@@ -378,3 +378,45 @@ export const getStaticProps = async (context) => {
 ![Alt text](./public/gSP_issues.png)
 
 ![Alt text](./public/ISR.png)
+
+![Alt text](./public/ISR_Revalidate.png)
+
+`Problems with SSG`
+
+![Alt text](./public/problemsWithSG1.png)
+
+![Alt text](./public/problemsWithSG2.png)
+
+### Server-Side Rendering or SSR or Dynamic Rendering
+
+![Alt text](./public/SSR.png)
+
+![Alt text](./public/SSR2.png)
+
+`getServerSideProps`
+
+getServerSideProps is a Next.js function that can be used to fetch data and render the contents of a page at request time.
+
+```javascript
+export default function Page({ data }) {
+  // Render data...
+}
+
+// This gets called on every request
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch(`https://.../data`);
+  const data = await res.json();
+
+  // Pass data to the page via props
+  return { props: { data } };
+}
+```
+
+![Alt text](./public/getServerSideProps1.png)
+
+![Alt text](./public/getServerSideProps2.png)
+
+`NOTE` : As you can see, `getServerSideProps` is similar to `getStaticProps`, but the difference is that getServerSideProps is run on every request instead of on build time. It will also update data instantly .
+
+context : We get params, req, res, query

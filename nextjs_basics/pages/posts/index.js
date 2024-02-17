@@ -1,9 +1,10 @@
+import Layout from "@/components/Layout";
 import Link from "next/link";
 import React from "react";
 
 function Posts({ posts }) {
   return (
-    <div>
+    <Layout>
       <h1>List Of Posts : </h1>
       <ul>
         {posts?.map((post, index) => (
@@ -19,7 +20,7 @@ function Posts({ posts }) {
       <div>
         <Link href="/">Back To Home</Link>
       </div>
-    </div>
+    </Layout>
   );
 }
 

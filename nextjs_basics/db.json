@@ -1,33 +1,84 @@
 {
+  "news": [
+    {
+      "id": "1",
+      "title": "News Article 1",
+      "description": "jbfjjfjfjjfugeuhkjbcmxcn,mnkzjsfkhiuehfjknb",
+      "category": "sports"
+    },
+
+    {
+      "id": "2",
+      "title": "News Article 2",
+      "description": "jbfjjfjfjjfugeuhkjbcmxcn,mnkzjsfkhiuehfjknb",
+      "category": "politics"
+    },
+    {
+      "id": "3",
+      "title": "News Article 3",
+      "description": "jbfjjfjfjjfugeuhkjbcmxcn,mnkzjsfkhiuehfjknb",
+      "category": "entertainment"
+    },
+    {
+      "id": "4",
+      "title": "News Article 4",
+      "description": "jbfjjfjfjjfugeuhkjbcmxcn,mnkzjsfkhiuehfjknb",
+      "category": "sports"
+    },
+    {
+      "id": "5",
+      "title": "News Article 5",
+      "description": "jbfjjfjfjjfugeuhkjbcmxcn,mnkzjsfkhiuehfjknb",
+      "category": "politics"
+    },
+    {
+      "id": "6",
+      "title": "News Article 5",
+      "description": "jbfjjfjfjjfugeuhkjbcmxcn,mnkzjsfkhiuehfjknb",
+      "category": "entertainment"
+    },
+    {
+      "id": "7",
+      "title": "News Article 7",
+      "description": "jbfjjfjfjjfugeuhkjbcmxcn,mnkzjsfkhiuehfjknb",
+      "category": "fashion"
+    },
+    {
+      "id": "8",
+      "title": "News Article 8",
+      "description": "jbfjjfjfjjfugeuhkjbcmxcn,mnkzjsfkhiuehfjknb",
+      "category": "business"
+    }
+  ],
   "products": [
     {
       "id": "1",
       "title": "title 1",
-      "price": 100,
+      "price": 700,
       "description": "ghjghfghfhhjfhjhhjjfhjhhjfk1"
     },
     {
       "id": "2",
       "title": "title 2",
-      "price": 200,
+      "price": 300,
       "description": "ghjghfghfhhjfhjhhjjfhjhhjfk2"
     },
     {
       "id": "3",
       "title": "title 3",
-      "price": 300,
+      "price": 500,
       "description": "ghjghfghfhhjfhjhhjjfhjhhjfk3"
     },
     {
       "id": "4",
       "title": "title 4",
-      "price": 400,
+      "price": 800,
       "description": "ghjghfghfhhjfhjhhjjfhjhhjfk4"
     },
     {
       "id": "5",
       "title": "title 5",
-      "price": 500,
+      "price": 200,
       "description": "ghjghfghfhhjfhjhhjjfhjhhjfk5"
     }
   ]

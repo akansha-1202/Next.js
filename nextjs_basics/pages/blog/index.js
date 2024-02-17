@@ -1,12 +1,13 @@
 import React from 'react'
 import Link from 'next/link';
+import Layout from '@/components/Layout';
 //this folder is for nested routing
 const Blog = () => {
   return (
-    <div>
+    <Layout>
       <Link href="/">Home</Link>
       <h1>Main Blog : localhost:3000/blog</h1>
-    </div>
+    </Layout>
   );
 }
 
