@@ -1,10 +1,12 @@
+import Layout from "@/components/Layout";
 import User from "@/components/User";
 import React from "react";
 
+//getStaticProps
 function Users({ data }) {
   console.log(data);
   return (
-    <div>
+    <Layout>
       <h2>List Of Users : </h2>
       <div>
         {data.map((user, index) => {
@@ -15,7 +17,7 @@ function Users({ data }) {
           );
         })}
       </div>
-    </div>
+    </Layout>
   );
 }
 

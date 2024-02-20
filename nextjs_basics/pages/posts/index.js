@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import Link from "next/link";
 import React from "react";
 
+//Static-side Generation, getStaticProps, getStaticPaths, fallback,
 function Posts({ posts }) {
   return (
     <Layout>

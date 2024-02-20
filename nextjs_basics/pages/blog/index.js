@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link';
 import Layout from '@/components/Layout';
+
 //this folder is for nested routing
 const Blog = () => {
   return (

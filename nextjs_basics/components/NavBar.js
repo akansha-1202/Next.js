@@ -17,6 +17,11 @@ function NavBar() {
           </Link>
         </li>
         <li>
+          <Link href="/users" className="hover:text-blue-500">
+            Users
+          </Link>
+        </li>
+        <li>
           <Link href="/product" className="hover:text-blue-500">
             Products
           </Link>
@@ -29,6 +34,16 @@ function NavBar() {
         <li>
           <Link href="/news" className="hover:text-blue-500">
             News
+          </Link>
+        </li>
+        <li>
+          <Link href="/events" className="hover:text-blue-500">
+            Events
+          </Link>
+        </li>
+        <li>
+          <Link href="/comments" className="hover:text-blue-500">
+            Comments
           </Link>
         </li>
       </ul>

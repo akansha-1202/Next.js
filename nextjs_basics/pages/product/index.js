@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 
-//this is dynamic Routing
+//Dynamic Routing, Incremental Static Generation, Revalidation with ISR
 const ProductList = ({ productId = 100, products }) => {
   return (
     <Layout>
@@ -38,7 +38,7 @@ const ProductList = ({ productId = 100, products }) => {
 export default ProductList;
 
 export const getStaticProps = async () => {
-  console.log("Generating / Regenerating....");
+  // console.log("Generating / Regenerating....");
   const res = await fetch("http://localhost:4000/products");
   const data = await res.json();
 

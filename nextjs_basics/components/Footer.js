@@ -8,7 +8,7 @@ function Footer() {
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full lg:w-6/12 px-4">
             <h4 className="text-3xl fonat-semibold text-white">
-              Let's keep in touch!
+              Lets keep in touch!
             </h4>
             <h5 className="text-lg mt-0 mb-2 text-white">
               Find us on any of these platforms, we respond 1-2 business days.

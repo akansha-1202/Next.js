@@ -1,8 +1,8 @@
 import Layout from "@/components/Layout";
 import Link from "next/link";
 import React from "react";
-import { toSentenceCase } from "@/utils/utils";
 
+//Server-side Rendering
 function NewsArticles({ news }) {
   return (
     <Layout>

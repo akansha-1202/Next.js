@@ -420,3 +420,34 @@ export async function getServerSideProps() {
 `NOTE` : As you can see, `getServerSideProps` is similar to `getStaticProps`, but the difference is that getServerSideProps is run on every request instead of on build time. It will also update data instantly .
 
 context : We get params, req, res, query
+
+### Client-side Rendering (CSR)
+
+In Client-Side Rendering (CSR) with React, the browser downloads a minimal HTML page and the JavaScript needed for the page.
+
+![Alt text](./public/CS_DF.png)
+
+In Next.js, there are two ways you can implement client-side rendering:
+
+1. Using React's useEffect() hook inside your pages instead of the server-side rendering methods (getStaticProps and getServerSideProps).
+2. Using a data fetching library like SWR or TanStack Query to fetch data on the client (recommended).
+
+
+
+![Alt text](./public/Summary1.png)
+![Alt text](./public/Summary2.png)
+
+
+## API Routes
+
+- Handle GET req
+- Handle POST req
+- Dynamic API routes
+- Handle DELETE req
+- Catch all API routes
+
+![Alt text](./public/API_Routes.png)
+
+![Alt text](./public/SummaryAPI.png)
+
+

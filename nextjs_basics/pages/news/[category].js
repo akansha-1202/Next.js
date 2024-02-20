@@ -1,5 +1,7 @@
 import React from "react";
 
+
+//How to use Context prop
 function Category({ news, category }) {
   return (
     <div>
