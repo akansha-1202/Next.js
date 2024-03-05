@@ -112,11 +112,9 @@ NEXT_PUBLIC_PASSWORD = hello;
 
 - `.env.local` always overrides the defaults set.
 
-```
-
+`
 `Good to know:` .env, .env.development, and .env.production files should be included in your repository as they define defaults. .env*.local should be added to .gitignore, as those files are intended to be ignored. .env.local is where secrets can be stored.
-
-```
+`
 
 ### Test Environment Variables
 
@@ -124,3 +122,6 @@ Apart from development and production environments, there is a 3rd option availa
 
 
 This one is useful when running tests with tools like `jest` or `cypress` where you need to set specific environment vars only for testing purposes. Test default values will be loaded if `NODE_ENV` is set to `test`, though you usually don't need to do this manually as testing tools will address it for you.
+
+
+![Alt text](./public/SummartOfMisc.png)
