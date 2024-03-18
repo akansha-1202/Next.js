@@ -112,16 +112,176 @@ NEXT_PUBLIC_PASSWORD = hello;
 
 - `.env.local` always overrides the defaults set.
 
-
-`Good to know:` .env, .env.development, and .env.production files should be included in your repository as they define defaults. .env*.local should be added to .gitignore, as those files are intended to be ignored. .env.local is where secrets can be stored.
-
+`Good to know:` .env, .env.development, and .env.production files should be included in your repository as they define defaults. .env\*.local should be added to .gitignore, as those files are intended to be ignored. .env.local is where secrets can be stored.
 
 ### Test Environment Variables
 
 Apart from development and production environments, there is a 3rd option available: test. In the same way you can set defaults for development or production environments, you can do the same with a `.env.test` file for the testing environment (though this one is not as common as the previous two). Next.js will not load environment variables from `.env.development` or `.env.production` in the testing environment.
 
-
 This one is useful when running tests with tools like `jest` or `cypress` where you need to set specific environment vars only for testing purposes. Test default values will be loaded if `NODE_ENV` is set to `test`, though you usually don't need to do this manually as testing tools will address it for you.
 
-
 ![Alt text](./public/SummartOfMisc.png)
+
+# Next-Auth
+
+NextAuth.js is a complete open-source authentication solution for Next.js applications.
+It is designed from the ground up to support Next.js and Serverless.
+
+## Flexible and easy to use
+
+- Designed to work with any OAuth service, it supports OAuth 1.0, 1.0A, 2.0 and OpenID Connect
+- Built-in support for many popular sign-in services
+- Supports email / passwordless authentication
+- Supports stateless authentication with any backend (Active Directory, LDAP, etc)
+- Supports both JSON Web Tokens and database sessions
+- Designed for Serverless but runs anywhere (AWS Lambda, Docker, Heroku, etc…)
+
+## Own your own data
+
+- NextAuth.js can be used with or without a database.
+
+- An open-source solution that allows you to keep control of your data
+- Supports Bring Your Own Database (BYOD) and can be used with any database
+- Built-in support for `MySQL`, `MariaDB`, `Postgres`, `SQL Server`, `MongoDB` and `SQLite`
+- Works great with databases from popular hosting providers
+- Can also be used without a database (e.g. OAuth + JWT)
+
+`Note: Email sign-in requires a database to be configured to store single-use verification tokens.`
+
+## To install Next-Auth
+
+`npm i next-auth`
+
+## Add API Route
+
+To add NextAuth.js to a project create a file called `[...nextauth].js` in `pages/api/auth`.
+
+```javascript
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+
+export const authOptions = {
+  // Configure one or more authentication providers
+  providers: [
+    GithubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+    // ...add more providers here
+  ],
+};
+export default NextAuth(authOptions);
+```
+
+## Configure Shared session state
+
+To be able to use useSession first you'll need to expose the session context, <SessionProvider />, at the top level of your application i.e., `pages/_app.jsx` :
+
+```javascript
+import { SessionProvider } from "next-auth/react";
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
+}
+```
+
+## Frontend - Add React Hook
+
+The `useSession()` React Hook in the NextAuth.js client is the easiest way to check if someone is signed in.
+
+```javascript
+//components/login-btn.jsx
+import { useSession, signIn, signOut } from "next-auth/react";
+
+export default function Login_Btn() {
+  const { data: session } = useSession();
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user.email} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    );
+  }
+  return (
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
+    </>
+  );
+}
+```
+
+## Backend - API Route
+
+To protect an API Route, you can use the `getServerSession()` method.
+
+```javascript
+//pages/api/restricted.js
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "./auth/[...nextauth]";
+
+export default async (req, res) => {
+  const session = await getServerSession(req, res, authOptions);
+
+  if (session) {
+    res.send({
+      content:
+        "This is protected content. You can access this content because you are signed in.",
+    });
+  } else {
+    res.send({
+      error:
+        "You must be signed in to view the protected content on this page.",
+    });
+  }
+};
+```
+
+## CLIENT API
+
+### useSession()
+- It is CLIENT-side hook.
+- The `useSession()` React Hook in the NextAuth.js client is the easiest way to check if someone is signed in.
+- useSession() returns an object containing two values: 
+  1. data  
+  2. status:
+
+- `data`: This can be three values: Session / undefined / null.
+ 1. when the session hasn't been fetched yet, data will be `undefined`
+ 2. in case it failed to retrieve the session, data will be `null`
+ 3. in case of success, data will be `Session`.
+  - `session`: 
+        ```javascript
+        {
+          user: {
+            name: string
+            email: string
+            image: string
+          },
+          expires: Date // This is the expiry of the session, not any of the tokens within the session``
+        }
+        ```
+- `status`: enum mapping to three possible session states: "loading" | "authenticated" | "unauthenticated"
+
+
+```javascript
+import { useSession } from "next-auth/react"
+
+export default function Component() {
+  const { data: session, status } = useSession()
+
+  if (status === "authenticated") {
+    return <p>Signed in as {session.user.email}</p>
+  }
+
+  return <a href="/api/auth/signin">Sign in</a>
+}
+```
