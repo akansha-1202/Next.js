@@ -259,16 +259,16 @@ export default async (req, res) => {
  2. in case it failed to retrieve the session, data will be `null`
  3. in case of success, data will be `Session`.
   - `session`: 
-        ```javascript
-        {
-          user: {
-            name: string
-            email: string
-            image: string
-          },
-          expires: Date // This is the expiry of the session, not any of the tokens within the session``
-        }
-        ```
+    ```javascript
+    {
+      user: {
+        name: string
+        email: string
+        image: string
+      },
+      expires: Date // This is the expiry of the session, not any of the tokens within the session``
+    }
+    ```
 - `status`: enum mapping to three possible session states: "loading" | "authenticated" | "unauthenticated"
 
 

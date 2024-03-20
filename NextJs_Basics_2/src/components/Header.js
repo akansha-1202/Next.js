@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import { useSession,signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 function Header() {
   const session = useSession();
-  console.log("session : ", session);
+  console.log("session in header: ", session);
   return (
     <div className="layout-header">
       <div className="flex text-white top-0 py-3 flex-wrap justify-around bg-silver">

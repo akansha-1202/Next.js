@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <SessionProvider session={pageProps.session}>
-        {/* {console.log("pageProps: ", pageProps.session)} */}
+        {console.log("pageProps: ", pageProps.session)}
         <Head>
           <title>Next.JS</title>
         </Head>
